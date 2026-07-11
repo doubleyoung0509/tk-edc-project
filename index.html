@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TK-EDC每日项目记录</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar report-sidebar">
+      <div class="side-brand"><span>TK</span><div><strong>项目工作台</strong><small>每日项目记录</small></div></div>
+      <nav>
+        <div class="nav-section">▾ 项目进度追踪表</div>
+        <div class="nav-group">▾ TK-EDC</div>
+        <button class="nav-item active" id="navTable"><span>▦</span>项目进度-edc</button>
+        <button class="nav-item sub-nav" id="navBoard"><span>▥</span>项目数据图表</button>
+        <button class="nav-item sub-nav" id="navFinance"><span>￥</span>财务报表</button>
+      </nav>
+    </aside>
+    <main class="workspace">
+      <div class="page-title"><span class="title-mark">TK</span><div><h1>TK-EDC每日项目记录</h1><p>项目进度、财务与交付状态管理</p></div><div class="cloud-account"><span id="cloudStatus">连接云端中…</span><button id="signOutBtn" type="button">退出登录</button></div></div>
+      <header class="tabs">
+        <button class="tab active" id="tableViewBtn"><span>▦</span>项目进度表</button>
+      </header>
+
+      <section class="toolbar">
+        <div class="tool-left">
+          <button class="primary" id="addRecord">＋ 添加记录 <small>⌄</small></button>
+          <button class="pill preset-btn" id="presetBtn">⚙ 预设管理</button>
+          <button class="pill" id="filterBtn">⚱ <span id="filterText">1 筛选</span></button>
+          <button class="pill tan" id="groupBtn">▦ 1 分组</button>
+          <button class="pill blue" id="sortBtn">⇅ <span id="sortText">1 排序</span></button>
+          <label class="toolbar-select">行高 <select id="rowHeight"><option value="32">紧凑</option><option value="38" selected>标准</option><option value="50">宽松</option><option value="64">超宽</option></select></label>
+          <label class="toolbar-check"><input type="checkbox" id="hideDone"> 隐藏已交付</label>
+          <button class="pill" id="exportHtmlBtn">⇩ 导出HTML</button>
+          <button class="pill" id="exportDbBtn">⇩ 导出数据库</button>
+        </div>
+        <div class="tool-right"><button id="undoBtn" title="撤销上一次修改">↶ 撤销</button></div>
+      </section>
+
+      <section class="filter-panel" id="filterPanel">
+        <label>搜索记录 <input id="tableSearch" placeholder="ID、客户、备注…" /></label>
+        <label>阶段状态
+          <select id="statusFilter"><option value="all">全部</option><option>已付款</option><option>已提交</option><option>审核中</option><option>交付完成</option><option>已退款</option></select>
+        </label>
+        <button id="clearFilter">清除</button>
+      </section>
+      <section class="quick-stats" id="quickStats"></section>
+
+      <section class="table-wrap">
+        <table>
+          <colgroup><col class="num"><col class="id"><col class="category"><col class="project"><col class="amount"><col class="cost"><col class="date"><col class="owner"><col class="client"><col class="status"><col class="note"><col class="files"></colgroup>
+          <thead><tr>
+            <th class="rownum"><input type="checkbox" id="selectAll" /></th><th class="id-head">♙☷ ID</th><th class="sortable-head" id="categorySort">◉ 项目分类 <span id="categorySortIcon">⇅</span></th><th class="project-head sortable-head" id="projectSort">A≡ 项目名称 <span id="projectSortIcon">⇅</span></th><th>￥ 金额</th><th>￥ 项目成本</th><th>▣ 开始时间</th><th>♙ 负责人</th><th>A≡ 客户信息</th><th>☷ 阶段状态</th><th>A≡ 备注</th><th>♧ 资料</th>
+          </tr></thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+        <div class="empty" id="emptyState">没有符合条件的记录</div>
+      </section>
+      <section class="board-wrap" id="boardWrap"></section>
+      <section class="finance-wrap" id="financeWrap"></section>
+      <footer><span id="recordCount">0 条记录</span><span>数据已保存在本地</span></footer>
+    </main>
+  </div>
+
+  <div class="modal" id="recordModal" aria-hidden="true">
+    <form class="modal-card" id="recordForm">
+      <div class="modal-head"><div><h2 id="modalTitle">添加项目记录</h2><p>所有字段均可从候选项中选择，也可直接输入新内容</p></div><button type="button" id="closeModal">×</button></div>
+      <div class="form-grid">
+        <label>项目编号（可选择/新增）<input name="id" list="idOptions" placeholder="留空则自动生成" /></label>
+        <label>项目分类（预设选择）<select name="category" id="categorySelect" required></select></label>
+        <label>项目名称（预设选择）<select name="project" id="projectSelect" required></select></label>
+        <label>金额（可选择/新增）<input name="amount" list="amountOptions" type="number" placeholder="请选择或输入金额" /></label>
+        <label>项目成本（可选择/新增）<input name="cost" list="costOptions" type="number" placeholder="请选择或输入成本" /></label>
+        <label>开始时间（日期选择）<input name="date" type="date" required /></label>
+        <label>负责人（预设选择）<select name="owner" id="ownerSelect" required></select></label>
+        <label class="wide">客户信息（可选择/新增）<input name="client" list="clientOptions" required placeholder="选择或输入客户名称 / 微信号" /></label>
+        <fieldset class="wide status-picker"><legend>阶段状态（可多选/新增）</legend><div id="statusPicker"></div><div class="add-status"><input id="newStatus" type="text" placeholder="输入新状态名称"><button id="addStatus" type="button">＋ 新增状态</button></div></fieldset>
+        <label class="wide">备注（可选择/新增）<input name="note" list="noteOptions" placeholder="选择常用备注或输入自定义内容" /></label>
+      </div>
+      <datalist id="idOptions"></datalist><datalist id="categoryOptions"></datalist><datalist id="projectOptions"></datalist><datalist id="amountOptions"></datalist><datalist id="costOptions"></datalist><datalist id="ownerOptions"></datalist><datalist id="clientOptions"></datalist><datalist id="noteOptions"></datalist>
+      <div class="modal-actions"><button type="button" class="delete-record" id="deleteRecord">删除记录</button><button type="button" class="cancel" id="cancelModal">取消</button><button class="save" type="submit">保存记录</button></div>
+    </form>
+  </div>
+  <div class="modal" id="presetModal" aria-hidden="true">
+    <div class="modal-card preset-card">
+      <div class="modal-head"><div><h2>预设管理</h2><p>预设内容会同步到新增、编辑、筛选和看板</p></div><button type="button" id="closePreset">×</button></div>
+      <div class="preset-sections" id="presetSections"></div>
+      <div class="modal-actions"><button class="save" type="button" id="finishPreset">完成</button></div>
+    </div>
+  </div>
+  <div class="modal auth-modal" id="authModal" aria-hidden="true">
+    <form class="modal-card auth-card" id="authForm">
+      <div class="auth-logo">TK</div><h2>登录项目工作台</h2><p>登录后可在手机和其他电脑同步访问同一份项目数据</p>
+      <label>邮箱<input type="email" name="email" required placeholder="name@example.com"></label>
+      <label>密码<input type="password" name="password" required minlength="6" placeholder="至少 6 位密码"></label>
+      <button class="save auth-submit" type="submit">登录</button><button class="auth-register" id="registerBtn" type="button">首次使用，创建账号</button>
+      <small id="authMessage"></small>
+    </form>
+  </div>
+  <div class="toast" id="toast">已保存</div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="cloud-config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
