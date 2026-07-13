@@ -10,9 +10,7 @@ create table if not exists public.projects (
   owner text not null default '',
   client text not null default '',
   payment_status text not null default '未收款',
-  delivery_progress integer not null default 0 check (delivery_progress between 0 and 100),
   statuses jsonb not null default '[]'::jsonb,
-  tags text not null default '',
   files text not null default '',
   note text not null default '',
   created_at timestamptz not null default now(),
@@ -22,8 +20,6 @@ create table if not exists public.projects (
 -- 兼容已经建好的旧数据库，重复执行不会报错
 alter table public.projects add column if not exists priority text not null default '普通';
 alter table public.projects add column if not exists payment_status text not null default '未收款';
-alter table public.projects add column if not exists delivery_progress integer not null default 0;
-alter table public.projects add column if not exists tags text not null default '';
 
 create table if not exists public.presets (
   preset_type text not null,
