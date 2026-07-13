@@ -23,22 +23,25 @@
       <section class="view-heading"><div><h2 id="viewTitle">项目进度表</h2><p id="viewDescription">集中管理每日项目、客户和阶段状态</p></div><span class="today-label" id="todayLabel"></span></section>
 
       <section class="toolbar">
-        <div class="tool-left">
+        <div class="tool-main">
           <button class="primary" id="addRecord">＋ 添加记录</button>
-          <button class="pill preset-btn" id="presetBtn">⚙ 预设管理</button>
-          <button class="pill" id="filterBtn">⚱ <span id="filterText">1 筛选</span></button>
+          <div class="table-search" role="search"><span>⌕</span><input id="tableSearch" aria-label="搜索项目记录" placeholder="搜索 ID、项目、客户或备注" /><button class="search-clear" id="clearSearch" type="button" title="清除搜索" aria-label="清除搜索">×</button></div>
+          <button class="pill" id="filterBtn">⚱ <span id="filterText">筛选</span></button>
+          <button class="pill preset-btn" id="presetBtn">⚙ 预设</button>
           <button class="pill tan" id="groupBtn">▦ 1 分组</button>
           <button class="pill blue" id="sortBtn">⇅ <span id="sortText">1 排序</span></button>
+        </div>
+        <div class="tool-options">
           <label class="toolbar-select">行高 <select id="rowHeight"><option value="32">紧凑</option><option value="38" selected>标准</option><option value="50">宽松</option><option value="64">超宽</option></select></label>
           <label class="toolbar-select">列宽 <select id="columnWidth"><option value="compact">紧凑</option><option value="standard" selected>标准</option><option value="wide">宽松</option><option value="extra">超宽</option></select></label>
           <label class="toolbar-check"><input type="checkbox" id="hideDone"> 隐藏已交付</label>
+          <span class="tool-divider" aria-hidden="true"></span>
           <button class="pill" id="exportHtmlBtn">⇩ 导出HTML</button>
           <button class="pill" id="exportDbBtn">⇩ 导出数据库</button>
         </div>
       </section>
 
       <section class="filter-panel" id="filterPanel">
-        <label>搜索记录 <input id="tableSearch" placeholder="ID、客户、备注…" /></label>
         <label>阶段状态
           <select id="statusFilter"><option value="all">全部</option><option>已付款</option><option>已提交</option><option>审核中</option><option>交付完成</option><option>已退款</option></select>
         </label>
@@ -53,7 +56,7 @@
         <table>
           <colgroup><col class="num"><col class="id"><col class="category"><col class="project"><col class="amount"><col class="cost"><col class="profit"><col class="date"><col class="owner"><col class="client"><col class="payment"><col class="status"><col class="note"><col class="files"></colgroup>
           <thead><tr>
-            <th class="rownum">#</th><th class="id-head">♙☷ ID</th><th class="sortable-head" id="categorySort">◉ 项目分类 <span id="categorySortIcon">⇅</span></th><th class="project-head sortable-head" id="projectSort">A≡ 项目名称 <span id="projectSortIcon">⇅</span></th><th>￥ 金额</th><th>￥ 项目成本</th><th>￥ 利润</th><th>▣ 开始时间</th><th>♙ 负责人</th><th>A≡ 客户信息</th><th>￥ 收款状态</th><th>☷ 阶段状态</th><th>A≡ 备注</th><th>♧ 资料</th>
+            <th class="rownum">#</th><th class="id-head sortable-head" data-sort="id" title="按项目编号排序">♙☷ ID <span class="sort-indicator">⇅</span></th><th class="sortable-head" data-sort="category" title="按项目分类排序">◉ 项目分类 <span class="sort-indicator">⇅</span></th><th class="project-head sortable-head" data-sort="project" title="按项目名称排序">A≡ 项目名称 <span class="sort-indicator">⇅</span></th><th class="numeric-head sortable-head" data-sort="amount" title="按金额排序">￥ 金额 <span class="sort-indicator">⇅</span></th><th class="numeric-head sortable-head" data-sort="cost" title="按成本排序">￥ 项目成本 <span class="sort-indicator">⇅</span></th><th class="numeric-head sortable-head" data-sort="profit" title="按利润排序">￥ 利润 <span class="sort-indicator">⇅</span></th><th class="sortable-head" data-sort="date" title="按开始时间排序">▣ 开始时间 <span class="sort-indicator">⇅</span></th><th class="sortable-head" data-sort="owner" title="按负责人排序">♙ 负责人 <span class="sort-indicator">⇅</span></th><th class="sortable-head" data-sort="client" title="按客户信息排序">A≡ 客户信息 <span class="sort-indicator">⇅</span></th><th class="sortable-head" data-sort="paymentStatus" title="按收款状态排序">￥ 收款状态 <span class="sort-indicator">⇅</span></th><th>☷ 阶段状态</th><th>A≡ 备注</th><th>♧ 资料</th>
           </tr></thead>
           <tbody id="tableBody"></tbody>
         </table>
@@ -65,9 +68,9 @@
     </main>
   </div>
 
-  <div class="modal" id="recordModal" aria-hidden="true">
+  <div class="modal" id="recordModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
     <form class="modal-card" id="recordForm">
-      <div class="modal-head"><div><h2 id="modalTitle">添加项目记录</h2><p>所有字段均可从候选项中选择，也可直接输入新内容</p></div><button type="button" id="closeModal">×</button></div>
+      <div class="modal-head"><div><h2 id="modalTitle">添加项目记录</h2><p>所有字段均可从候选项中选择，也可直接输入新内容</p></div><button type="button" id="closeModal" aria-label="关闭项目编辑窗口">×</button></div>
       <div class="form-grid">
         <div class="form-section-title wide"><span>01</span>基本信息</div>
         <label>项目编号（可选择/新增）<input name="id" list="idOptions" placeholder="留空则自动生成" /></label>
@@ -84,28 +87,29 @@
         <div class="form-section-title wide"><span>03</span>阶段与备注</div>
         <fieldset class="wide status-picker"><legend>阶段状态（可多选）</legend><div id="statusPicker"></div></fieldset>
         <label class="wide">备注（可选择/新增）<input name="note" list="noteOptions" placeholder="选择常用备注或输入自定义内容" /></label>
+        <label class="wide">资料（可选择/新增）<input name="files" list="fileOptions" placeholder="输入资料名称、网盘地址或相关链接" /></label>
       </div>
-      <datalist id="idOptions"></datalist><datalist id="categoryOptions"></datalist><datalist id="projectOptions"></datalist><datalist id="amountOptions"></datalist><datalist id="costOptions"></datalist><datalist id="ownerOptions"></datalist><datalist id="clientOptions"></datalist><datalist id="noteOptions"></datalist>
+      <datalist id="idOptions"></datalist><datalist id="categoryOptions"></datalist><datalist id="projectOptions"></datalist><datalist id="amountOptions"></datalist><datalist id="costOptions"></datalist><datalist id="ownerOptions"></datalist><datalist id="clientOptions"></datalist><datalist id="noteOptions"></datalist><datalist id="fileOptions"></datalist>
       <div class="modal-actions"><button type="button" class="delete-record" id="deleteRecord">删除记录</button><button type="button" class="cancel" id="cancelModal">取消</button><button class="save" type="submit">保存记录</button></div>
     </form>
   </div>
-  <div class="modal" id="presetModal" aria-hidden="true">
+  <div class="modal" id="presetModal" role="dialog" aria-modal="true" aria-labelledby="presetTitle" aria-hidden="true">
     <div class="modal-card preset-card">
-      <div class="modal-head"><div><h2>预设管理</h2><p>预设内容会同步到新增、编辑、筛选和看板</p></div><button type="button" id="closePreset">×</button></div>
+      <div class="modal-head"><div><h2 id="presetTitle">预设管理</h2><p>预设内容会同步到新增、编辑、筛选和看板</p></div><button type="button" id="closePreset" aria-label="关闭预设管理窗口">×</button></div>
       <div class="preset-sections" id="presetSections"></div>
       <div class="modal-actions"><button class="save" type="button" id="finishPreset">完成</button></div>
     </div>
   </div>
-  <div class="modal auth-modal" id="authModal" aria-hidden="true">
+  <div class="modal auth-modal" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle" aria-hidden="true">
     <form class="modal-card auth-card" id="authForm">
-      <div class="auth-logo">TK</div><h2>登录项目工作台</h2><p>登录后可在手机和其他电脑同步访问同一份项目数据</p>
+      <div class="auth-logo">TK</div><h2 id="authTitle">登录项目工作台</h2><p>登录后可在手机和其他电脑同步访问同一份项目数据</p>
       <label>邮箱<input type="email" name="email" required placeholder="name@example.com"></label>
       <label>密码<input type="password" name="password" required minlength="6" placeholder="至少 6 位密码"></label>
       <button class="save auth-submit" type="submit">登录</button><button class="auth-register" id="registerBtn" type="button">首次使用，创建账号</button>
       <small id="authMessage"></small>
     </form>
   </div>
-  <div class="toast" id="toast">已保存</div>
+  <div class="toast" id="toast" role="status" aria-live="polite">已保存</div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="cloud-config.js"></script>
   <script src="app.js"></script>
