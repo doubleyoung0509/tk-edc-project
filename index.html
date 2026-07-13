@@ -20,7 +20,7 @@
     </aside>
     <main class="workspace">
       <div class="page-title"><span class="title-mark">TK</span><div><h1>TK-EDC每日项目记录</h1><p>项目进度、财务与交付状态管理</p></div><div class="cloud-account"><span id="cloudStatus">连接云端中…</span><button id="signOutBtn" type="button">退出登录</button></div></div>
-      <section class="view-heading"><div><h2 id="viewTitle">项目进度表</h2><p id="viewDescription">集中管理每日项目、客户和交付进度</p></div><span class="today-label" id="todayLabel"></span></section>
+      <section class="view-heading"><div><h2 id="viewTitle">项目进度表</h2><p id="viewDescription">集中管理每日项目、客户和阶段状态</p></div><span class="today-label" id="todayLabel"></span></section>
 
       <section class="toolbar">
         <div class="tool-left">
@@ -54,9 +54,9 @@
 
       <section class="table-wrap">
         <table>
-          <colgroup><col class="num"><col class="id"><col class="category"><col class="project"><col class="priority"><col class="amount"><col class="cost"><col class="profit"><col class="date"><col class="owner"><col class="client"><col class="payment"><col class="progress"><col class="status"><col class="tags"><col class="updated"><col class="note"><col class="files"></colgroup>
+          <colgroup><col class="num"><col class="id"><col class="category"><col class="project"><col class="priority"><col class="amount"><col class="cost"><col class="profit"><col class="date"><col class="owner"><col class="client"><col class="payment"><col class="status"><col class="updated"><col class="note"><col class="files"></colgroup>
           <thead><tr>
-            <th class="rownum"><input type="checkbox" id="selectAll" /></th><th class="id-head">♙☷ ID</th><th class="sortable-head" id="categorySort">◉ 项目分类 <span id="categorySortIcon">⇅</span></th><th class="project-head sortable-head" id="projectSort">A≡ 项目名称 <span id="projectSortIcon">⇅</span></th><th>⚑ 优先级</th><th>￥ 金额</th><th>￥ 项目成本</th><th>￥ 利润</th><th>▣ 开始时间</th><th>♙ 负责人</th><th>A≡ 客户信息</th><th>￥ 收款状态</th><th>◴ 交付进度</th><th>☷ 阶段状态</th><th># 标签</th><th>◷ 更新时间</th><th>A≡ 备注</th><th>♧ 资料</th>
+            <th class="rownum"><input type="checkbox" id="selectAll" /></th><th class="id-head">♙☷ ID</th><th class="sortable-head" id="categorySort">◉ 项目分类 <span id="categorySortIcon">⇅</span></th><th class="project-head sortable-head" id="projectSort">A≡ 项目名称 <span id="projectSortIcon">⇅</span></th><th>⚑ 优先级</th><th>￥ 金额</th><th>￥ 项目成本</th><th>￥ 利润</th><th>▣ 开始时间</th><th>♙ 负责人</th><th>A≡ 客户信息</th><th>￥ 收款状态</th><th>☷ 阶段状态</th><th>◷ 更新时间</th><th>A≡ 备注</th><th>♧ 资料</th>
           </tr></thead>
           <tbody id="tableBody"></tbody>
         </table>
@@ -83,12 +83,10 @@
         <label>负责人（预设选择）<select name="owner" id="ownerSelect" required></select></label>
         <label class="wide">客户信息（可选择/新增）<input name="client" list="clientOptions" required placeholder="选择或输入客户名称 / 微信号" /></label>
         <label>收款状态（预设选择）<select name="paymentStatus" id="paymentSelect"></select></label>
-        <label>交付进度（0-100%）<div class="progress-input"><input name="progress" type="range" min="0" max="100" step="5" value="0"><output id="progressOutput">0%</output></div></label>
         <fieldset class="wide status-picker"><legend>阶段状态（可多选/新增）</legend><div id="statusPicker"></div><div class="add-status"><input id="newStatus" type="text" placeholder="输入新状态名称"><button id="addStatus" type="button">＋ 新增状态</button></div></fieldset>
-        <label class="wide">标签（逗号分隔）<input name="tags" list="tagOptions" placeholder="例如：重点客户、加急、复购" /></label>
         <label class="wide">备注（可选择/新增）<input name="note" list="noteOptions" placeholder="选择常用备注或输入自定义内容" /></label>
       </div>
-      <datalist id="idOptions"></datalist><datalist id="categoryOptions"></datalist><datalist id="projectOptions"></datalist><datalist id="amountOptions"></datalist><datalist id="costOptions"></datalist><datalist id="ownerOptions"></datalist><datalist id="clientOptions"></datalist><datalist id="tagOptions"></datalist><datalist id="noteOptions"></datalist>
+      <datalist id="idOptions"></datalist><datalist id="categoryOptions"></datalist><datalist id="projectOptions"></datalist><datalist id="amountOptions"></datalist><datalist id="costOptions"></datalist><datalist id="ownerOptions"></datalist><datalist id="clientOptions"></datalist><datalist id="noteOptions"></datalist>
       <div class="modal-actions"><button type="button" class="delete-record" id="deleteRecord">删除记录</button><button type="button" class="cancel" id="cancelModal">取消</button><button class="save" type="submit">保存记录</button></div>
     </form>
   </div>
