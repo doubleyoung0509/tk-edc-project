@@ -6,20 +6,14 @@ create table if not exists public.projects (
   amount numeric not null default 0,
   cost numeric not null default 0,
   start_date date,
-  priority text not null default '普通',
   owner text not null default '',
   client text not null default '',
-  payment_status text not null default '未收款',
   statuses jsonb not null default '[]'::jsonb,
   files text not null default '',
   note text not null default '',
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
-
--- 兼容已经建好的旧数据库，重复执行不会报错
-alter table public.projects add column if not exists priority text not null default '普通';
-alter table public.projects add column if not exists payment_status text not null default '未收款';
 
 create table if not exists public.presets (
   preset_type text not null,
