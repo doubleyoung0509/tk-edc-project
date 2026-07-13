@@ -6,14 +6,32 @@ create table if not exists public.projects (
   amount numeric not null default 0,
   cost numeric not null default 0,
   start_date date,
+  deadline date,
+  priority text not null default '普通',
   owner text not null default '',
   client text not null default '',
+  customer_source text not null default '',
+  contact text not null default '',
+  payment_status text not null default '未收款',
+  delivery_progress integer not null default 0 check (delivery_progress between 0 and 100),
   statuses jsonb not null default '[]'::jsonb,
+  tags text not null default '',
+  follow_up text not null default '',
   files text not null default '',
   note text not null default '',
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+
+-- 兼容已经建好的旧数据库，重复执行不会报错
+alter table public.projects add column if not exists deadline date;
+alter table public.projects add column if not exists priority text not null default '普通';
+alter table public.projects add column if not exists customer_source text not null default '';
+alter table public.projects add column if not exists contact text not null default '';
+alter table public.projects add column if not exists payment_status text not null default '未收款';
+alter table public.projects add column if not exists delivery_progress integer not null default 0;
+alter table public.projects add column if not exists tags text not null default '';
+alter table public.projects add column if not exists follow_up text not null default '';
 
 create table if not exists public.presets (
   preset_type text not null,
@@ -35,4 +53,3 @@ using (true) with check (true);
 
 grant select, insert, update, delete on public.projects to authenticated;
 grant select, insert, update, delete on public.presets to authenticated;
-
