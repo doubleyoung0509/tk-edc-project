@@ -3,13 +3,7 @@
 
 alter table public.projects add column if not exists priority text not null default '普通';
 alter table public.projects add column if not exists payment_status text not null default '未收款';
-alter table public.projects add column if not exists delivery_progress integer not null default 0;
-alter table public.projects add column if not exists tags text not null default '';
 
 update public.projects
 set priority = coalesce(nullif(priority, ''), '普通'),
-    payment_status = coalesce(nullif(payment_status, ''), '未收款'),
-    delivery_progress = case
-      when statuses ? '交付完成' then 100
-      else greatest(0, least(100, coalesce(delivery_progress, 0)))
-    end;
+    payment_status = coalesce(nullif(payment_status, ''), '未收款');
