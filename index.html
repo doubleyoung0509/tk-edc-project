@@ -42,9 +42,6 @@
         <label>阶段状态
           <select id="statusFilter"><option value="all">全部</option><option>已付款</option><option>已提交</option><option>审核中</option><option>交付完成</option><option>已退款</option></select>
         </label>
-        <label>优先级
-          <select id="priorityFilter"><option value="all">全部</option><option>紧急</option><option>高</option><option>普通</option><option>低</option></select>
-        </label>
         <label>收款状态
           <select id="paymentFilter"><option value="all">全部</option><option>未收款</option><option>部分收款</option><option>已收款</option><option>已退款</option></select>
         </label>
@@ -54,9 +51,9 @@
 
       <section class="table-wrap">
         <table>
-          <colgroup><col class="num"><col class="id"><col class="category"><col class="project"><col class="priority"><col class="amount"><col class="cost"><col class="profit"><col class="date"><col class="owner"><col class="client"><col class="payment"><col class="status"><col class="updated"><col class="note"><col class="files"></colgroup>
+          <colgroup><col class="num"><col class="id"><col class="category"><col class="project"><col class="amount"><col class="cost"><col class="profit"><col class="date"><col class="owner"><col class="client"><col class="payment"><col class="status"><col class="updated"><col class="note"><col class="files"></colgroup>
           <thead><tr>
-            <th class="rownum"><input type="checkbox" id="selectAll" /></th><th class="id-head">♙☷ ID</th><th class="sortable-head" id="categorySort">◉ 项目分类 <span id="categorySortIcon">⇅</span></th><th class="project-head sortable-head" id="projectSort">A≡ 项目名称 <span id="projectSortIcon">⇅</span></th><th>⚑ 优先级</th><th>￥ 金额</th><th>￥ 项目成本</th><th>￥ 利润</th><th>▣ 开始时间</th><th>♙ 负责人</th><th>A≡ 客户信息</th><th>￥ 收款状态</th><th>☷ 阶段状态</th><th>◷ 更新时间</th><th>A≡ 备注</th><th>♧ 资料</th>
+            <th class="rownum"><input type="checkbox" id="selectAll" /></th><th class="id-head">♙☷ ID</th><th class="sortable-head" id="categorySort">◉ 项目分类 <span id="categorySortIcon">⇅</span></th><th class="project-head sortable-head" id="projectSort">A≡ 项目名称 <span id="projectSortIcon">⇅</span></th><th>￥ 金额</th><th>￥ 项目成本</th><th>￥ 利润</th><th>▣ 开始时间</th><th>♙ 负责人</th><th>A≡ 客户信息</th><th>￥ 收款状态</th><th>☷ 阶段状态</th><th>◷ 更新时间</th><th>A≡ 备注</th><th>♧ 资料</th>
           </tr></thead>
           <tbody id="tableBody"></tbody>
         </table>
@@ -79,7 +76,6 @@
         <label>项目成本（可选择/新增）<input name="cost" list="costOptions" type="number" placeholder="请选择或输入成本" /></label>
         <label>自动利润<input name="profitPreview" class="profit-preview" readonly placeholder="金额 - 成本" /></label>
         <label>开始时间（日期选择）<input name="date" type="date" required /></label>
-        <label>优先级（预设选择）<select name="priority" id="prioritySelect"></select></label>
         <label>负责人（预设选择）<select name="owner" id="ownerSelect" required></select></label>
         <label class="wide">客户信息（可选择/新增）<input name="client" list="clientOptions" required placeholder="选择或输入客户名称 / 微信号" /></label>
         <label>收款状态（预设选择）<select name="paymentStatus" id="paymentSelect"></select></label>
