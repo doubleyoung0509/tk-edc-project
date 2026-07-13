@@ -24,7 +24,7 @@
 
       <section class="toolbar">
         <div class="tool-left">
-          <button class="primary" id="addRecord">＋ 添加记录 <small>⌄</small></button>
+          <button class="primary" id="addRecord">＋ 添加记录</button>
           <button class="pill preset-btn" id="presetBtn">⚙ 预设管理</button>
           <button class="pill" id="filterBtn">⚱ <span id="filterText">1 筛选</span></button>
           <button class="pill tan" id="groupBtn">▦ 1 分组</button>
@@ -34,7 +34,6 @@
           <button class="pill" id="exportHtmlBtn">⇩ 导出HTML</button>
           <button class="pill" id="exportDbBtn">⇩ 导出数据库</button>
         </div>
-        <div class="tool-right"><button id="undoBtn" title="撤销上一次修改">↶ 撤销</button></div>
       </section>
 
       <section class="filter-panel" id="filterPanel">
@@ -45,7 +44,7 @@
         <label>收款状态
           <select id="paymentFilter"><option value="all">全部</option><option>未收款</option><option>部分收款</option><option>已收款</option><option>已退款</option></select>
         </label>
-        <button id="clearFilter">清除</button>
+        <button class="context-action" id="clearFilter">清除</button>
       </section>
       <section class="quick-stats" id="quickStats"></section>
 
