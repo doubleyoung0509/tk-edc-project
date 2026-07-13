@@ -9,6 +9,8 @@ const presetDefaults={category:['广告户'],project:['报白户'],owner:['TK-ED
 const presets={...presetDefaults,...JSON.parse(localStorage.getItem('projectPresets')||'{}')};
 state.records.forEach(r=>{if(r.owner==='杜阳')r.owner='TK-EDC';if(r.cost==null)r.cost='';r.paymentStatus??='未收款';r.statuses=Array.isArray(r.statuses)?r.statuses:[]});Object.keys(presets).filter(k=>!Object.hasOwn(presetDefaults,k)).forEach(k=>delete presets[k]);presets.owner=[...new Set((presets.owner||[]).map(v=>v==='杜阳'?'TK-EDC':v))];Object.keys(presetDefaults).forEach(k=>presets[k]=[...new Set([...(presets[k]||[]),...presetDefaults[k]])]);localStorage.setItem('projectRecords',JSON.stringify(state.records));localStorage.setItem('projectPresets',JSON.stringify(presets));
 const $=s=>document.querySelector(s); const body=$('#tableBody');
+function paintGroupThemes(){document.querySelectorAll('#tableBody .group-row').forEach(row=>{row.style.cssText+=`;${themeStyle(projectTheme(row.dataset.group))}`})}
+new MutationObserver(paintGroupThemes).observe(body,{childList:true});
 const statusClass={'已付款':'paid','已退款':'refund','已提交':'submitted','审核中':'review','交付完成':'done'};
 const projectThemes=[
   {accent:'#4f6ef7',soft:'#f7f8ff',strong:'#edf1ff',text:'#3549b3'},
