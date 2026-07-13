@@ -48,16 +48,15 @@
         <label>收款状态
           <select id="paymentFilter"><option value="all">全部</option><option>未收款</option><option>部分收款</option><option>已收款</option><option>已退款</option></select>
         </label>
-        <label class="overdue-filter"><input type="checkbox" id="overdueOnly"> 只看已逾期</label>
         <button id="clearFilter">清除</button>
       </section>
       <section class="quick-stats" id="quickStats"></section>
 
       <section class="table-wrap">
         <table>
-          <colgroup><col class="num"><col class="id"><col class="category"><col class="project"><col class="priority"><col class="amount"><col class="cost"><col class="profit"><col class="date"><col class="deadline"><col class="owner"><col class="client"><col class="source"><col class="payment"><col class="progress"><col class="status"><col class="contact"><col class="tags"><col class="followup"><col class="updated"><col class="note"><col class="files"></colgroup>
+          <colgroup><col class="num"><col class="id"><col class="category"><col class="project"><col class="priority"><col class="amount"><col class="cost"><col class="profit"><col class="date"><col class="owner"><col class="client"><col class="payment"><col class="progress"><col class="status"><col class="tags"><col class="updated"><col class="note"><col class="files"></colgroup>
           <thead><tr>
-            <th class="rownum"><input type="checkbox" id="selectAll" /></th><th class="id-head">♙☷ ID</th><th class="sortable-head" id="categorySort">◉ 项目分类 <span id="categorySortIcon">⇅</span></th><th class="project-head sortable-head" id="projectSort">A≡ 项目名称 <span id="projectSortIcon">⇅</span></th><th>⚑ 优先级</th><th>￥ 金额</th><th>￥ 项目成本</th><th>￥ 利润</th><th>▣ 开始时间</th><th>◷ 截止日期</th><th>♙ 负责人</th><th>A≡ 客户信息</th><th>◎ 客户来源</th><th>￥ 收款状态</th><th>◴ 交付进度</th><th>☷ 阶段状态</th><th>☎ 联系方式</th><th># 标签</th><th>↗ 跟进记录</th><th>◷ 更新时间</th><th>A≡ 备注</th><th>♧ 资料</th>
+            <th class="rownum"><input type="checkbox" id="selectAll" /></th><th class="id-head">♙☷ ID</th><th class="sortable-head" id="categorySort">◉ 项目分类 <span id="categorySortIcon">⇅</span></th><th class="project-head sortable-head" id="projectSort">A≡ 项目名称 <span id="projectSortIcon">⇅</span></th><th>⚑ 优先级</th><th>￥ 金额</th><th>￥ 项目成本</th><th>￥ 利润</th><th>▣ 开始时间</th><th>♙ 负责人</th><th>A≡ 客户信息</th><th>￥ 收款状态</th><th>◴ 交付进度</th><th>☷ 阶段状态</th><th># 标签</th><th>◷ 更新时间</th><th>A≡ 备注</th><th>♧ 资料</th>
           </tr></thead>
           <tbody id="tableBody"></tbody>
         </table>
@@ -80,20 +79,16 @@
         <label>项目成本（可选择/新增）<input name="cost" list="costOptions" type="number" placeholder="请选择或输入成本" /></label>
         <label>自动利润<input name="profitPreview" class="profit-preview" readonly placeholder="金额 - 成本" /></label>
         <label>开始时间（日期选择）<input name="date" type="date" required /></label>
-        <label>截止日期<input name="deadline" type="date" /></label>
         <label>优先级（预设选择）<select name="priority" id="prioritySelect"></select></label>
         <label>负责人（预设选择）<select name="owner" id="ownerSelect" required></select></label>
         <label class="wide">客户信息（可选择/新增）<input name="client" list="clientOptions" required placeholder="选择或输入客户名称 / 微信号" /></label>
-        <label>客户来源（预设选择）<select name="customerSource" id="sourceSelect"></select></label>
-        <label>联系方式<input name="contact" list="contactOptions" placeholder="手机号 / 微信 / 邮箱" /></label>
         <label>收款状态（预设选择）<select name="paymentStatus" id="paymentSelect"></select></label>
         <label>交付进度（0-100%）<div class="progress-input"><input name="progress" type="range" min="0" max="100" step="5" value="0"><output id="progressOutput">0%</output></div></label>
         <fieldset class="wide status-picker"><legend>阶段状态（可多选/新增）</legend><div id="statusPicker"></div><div class="add-status"><input id="newStatus" type="text" placeholder="输入新状态名称"><button id="addStatus" type="button">＋ 新增状态</button></div></fieldset>
         <label class="wide">标签（逗号分隔）<input name="tags" list="tagOptions" placeholder="例如：重点客户、加急、复购" /></label>
-        <label class="wide">跟进记录<textarea name="followUp" rows="3" placeholder="记录沟通结果、下一步安排和待办事项"></textarea></label>
         <label class="wide">备注（可选择/新增）<input name="note" list="noteOptions" placeholder="选择常用备注或输入自定义内容" /></label>
       </div>
-      <datalist id="idOptions"></datalist><datalist id="categoryOptions"></datalist><datalist id="projectOptions"></datalist><datalist id="amountOptions"></datalist><datalist id="costOptions"></datalist><datalist id="ownerOptions"></datalist><datalist id="clientOptions"></datalist><datalist id="contactOptions"></datalist><datalist id="tagOptions"></datalist><datalist id="noteOptions"></datalist>
+      <datalist id="idOptions"></datalist><datalist id="categoryOptions"></datalist><datalist id="projectOptions"></datalist><datalist id="amountOptions"></datalist><datalist id="costOptions"></datalist><datalist id="ownerOptions"></datalist><datalist id="clientOptions"></datalist><datalist id="tagOptions"></datalist><datalist id="noteOptions"></datalist>
       <div class="modal-actions"><button type="button" class="delete-record" id="deleteRecord">删除记录</button><button type="button" class="cancel" id="cancelModal">取消</button><button class="save" type="submit">保存记录</button></div>
     </form>
   </div>
