@@ -1,8 +1,9 @@
 const seed = [];
 
 const uiPrefs=JSON.parse(localStorage.getItem('projectUiPrefs')||'{}');
+if(!localStorage.getItem('categoryGroupingV1')){uiPrefs.groupBy='category';localStorage.setItem('categoryGroupingV1','1');localStorage.setItem('projectUiPrefs',JSON.stringify({...uiPrefs,groupBy:'category'}))}
 const sortLabels={id:'编号',category:'分类',project:'名称',amount:'金额',cost:'成本',profit:'利润',date:'日期',owner:'负责人',client:'客户',paymentStatus:'收款状态'};
-const state={records:JSON.parse(localStorage.getItem('projectRecords')||'null')||seed,search:'',status:'all',payment:'all',sortAsc:typeof uiPrefs.sortAsc==='boolean'?uiPrefs.sortAsc:false,sortField:Object.hasOwn(sortLabels,uiPrefs.sortField)?uiPrefs.sortField:'date',collapsedGroups:new Set(),history:[],editingKey:null,groupBy:uiPrefs.groupBy==='category'?'category':'project',hideDone:!!uiPrefs.hideDone,view:'table',customerSearch:'',customerFilter:'all',rowHeight:Number(uiPrefs.rowHeight)||38,columnWidth:['compact','standard','wide','extra'].includes(uiPrefs.columnWidth)?uiPrefs.columnWidth:'standard'};
+const state={records:JSON.parse(localStorage.getItem('projectRecords')||'null')||seed,search:'',status:'all',payment:'all',sortAsc:typeof uiPrefs.sortAsc==='boolean'?uiPrefs.sortAsc:false,sortField:Object.hasOwn(sortLabels,uiPrefs.sortField)?uiPrefs.sortField:'date',collapsedGroups:new Set(),history:[],editingKey:null,groupBy:uiPrefs.groupBy==='project'?'project':'category',hideDone:!!uiPrefs.hideDone,view:'table',customerSearch:'',customerFilter:'all',rowHeight:Number(uiPrefs.rowHeight)||38,columnWidth:['compact','standard','wide','extra'].includes(uiPrefs.columnWidth)?uiPrefs.columnWidth:'standard'};
 let columnOrder=Array.from({length:14},(_,i)=>i);localStorage.removeItem('columnOrder');
 const presetDefaults={category:['广告户'],project:['报白户'],owner:['TK-EDC'],status:['已付款','已退款','已提交','审核中','交付完成'],paymentStatus:['未收款','部分收款','已收款','已退款']};
 const presets={...presetDefaults,...JSON.parse(localStorage.getItem('projectPresets')||'{}')};
