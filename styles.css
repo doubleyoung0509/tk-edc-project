@@ -84,4 +84,5 @@ table[data-width="extra"]{min-width:2550px}table[data-width="extra"] col.id{widt
 .customer-actions .customer-edit{display:none!important}
 .customer-table th:last-child{font-size:0}.customer-table th:last-child::after{content:'查看';font-size:12px}
 .customer-projects{flex-wrap:wrap;max-height:88px;overflow:auto;align-content:center;padding:4px 0}
+.table-wrap .group-type{display:none!important}
 .customer-readonly .form-grid input:disabled,.customer-readonly .form-grid select:disabled,.customer-readonly .form-grid textarea:disabled{background:#f7f9fc;color:#4d5b70;border-color:#e4e8ef;opacity:1;cursor:not-allowed}.customer-readonly .status-option{cursor:default}.customer-readonly .status-option input:disabled{opacity:.8}
