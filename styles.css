@@ -89,6 +89,8 @@ table[data-width="extra"]{min-width:2550px}table[data-width="extra"] col.id{widt
 .table-wrap .group-row{cursor:pointer}.table-wrap .group-title{max-width:260px!important;font-size:19px!important;letter-spacing:0}.table-wrap .group-summary{gap:7px;margin-left:12px}.table-wrap .group-metric{background:#ffffffeb}
 .customer-readonly .form-grid input:disabled,.customer-readonly .form-grid select:disabled,.customer-readonly .form-grid textarea:disabled{background:#f7f9fc;color:#4d5b70;border-color:#e4e8ef;opacity:1;cursor:not-allowed}.customer-readonly .status-option{cursor:default}.customer-readonly .status-option input:disabled{opacity:.8}
 
+.avatar{border:0;cursor:pointer;transition:transform .15s,box-shadow .15s}.avatar:hover{transform:scale(1.12);box-shadow:0 0 0 3px #dce5ff}.avatar:focus-visible{outline:2px solid #5575f6;outline-offset:2px}
+
 /* 项目识别与桌面端扫读优化 */
 @media(min-width:901px){
   .table-wrap thead th{letter-spacing:.1px}
