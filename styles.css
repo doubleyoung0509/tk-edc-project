@@ -88,3 +88,19 @@ table[data-width="extra"]{min-width:2550px}table[data-width="extra"] col.id{widt
 .table-wrap .group-summary .group-profit{display:none!important}
 .table-wrap .group-row{cursor:pointer}.table-wrap .group-title{max-width:260px!important;font-size:19px!important;letter-spacing:0}.table-wrap .group-summary{gap:7px;margin-left:12px}.table-wrap .group-metric{background:#ffffffeb}
 .customer-readonly .form-grid input:disabled,.customer-readonly .form-grid select:disabled,.customer-readonly .form-grid textarea:disabled{background:#f7f9fc;color:#4d5b70;border-color:#e4e8ef;opacity:1;cursor:not-allowed}.customer-readonly .status-option{cursor:default}.customer-readonly .status-option input:disabled{opacity:.8}
+
+/* 项目识别与桌面端扫读优化 */
+@media(min-width:901px){
+  .table-wrap thead th{letter-spacing:.1px}
+  .table-wrap thead th .col-resizer{right:-4px;width:9px}
+  .table-wrap thead th .col-resizer:hover,.table-wrap thead th .col-resizer.dragging{background:linear-gradient(180deg,transparent 12%,#6d88f8 12%,#6d88f8 88%,transparent 88%)}
+  .table-wrap .data-row td{vertical-align:middle}
+  .table-wrap .data-row .category .tag{height:26px;padding:0 11px;border:1px solid #f4c894;background:#fff1df;color:#9a571b;font-weight:650;box-shadow:0 1px 2px #b76a2314}
+  .table-wrap .data-row .client-cell{color:#4f5d72}
+  .table-wrap .data-row .payment-badge{box-shadow:inset 0 0 0 1px #ffffff80}
+  .table-wrap .group-row td:first-child{background:linear-gradient(90deg,var(--project-soft-strong),var(--project-soft) 46%,#fff 86%)!important}
+  .table-wrap .group-row .group-title{font-weight:800;letter-spacing:.15px}
+  .table-wrap .group-row .group-summary{margin-left:17px}
+  .table-wrap .group-row .group-metric{box-shadow:0 1px 2px #1e293b0a}
+  .table-wrap .project-row:nth-of-type(even) td:not(.row-index):not(.id-cell):not(.project-cell){background:#fcfdff!important}
+}
