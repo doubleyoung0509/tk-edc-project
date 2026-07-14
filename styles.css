@@ -86,4 +86,5 @@ table[data-width="extra"]{min-width:2550px}table[data-width="extra"] col.id{widt
 .customer-projects{flex-wrap:wrap;max-height:88px;overflow:auto;align-content:center;padding:4px 0}
 .table-wrap .group-type{display:none!important}
 .table-wrap .group-summary .group-profit{display:none!important}
+.table-wrap .group-row{cursor:pointer}.table-wrap .group-title{max-width:260px!important;font-size:19px!important;letter-spacing:0}.table-wrap .group-summary{gap:7px;margin-left:12px}.table-wrap .group-metric{background:#ffffffeb}
 .customer-readonly .form-grid input:disabled,.customer-readonly .form-grid select:disabled,.customer-readonly .form-grid textarea:disabled{background:#f7f9fc;color:#4d5b70;border-color:#e4e8ef;opacity:1;cursor:not-allowed}.customer-readonly .status-option{cursor:default}.customer-readonly .status-option input:disabled{opacity:.8}
