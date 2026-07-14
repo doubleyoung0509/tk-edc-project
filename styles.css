@@ -104,4 +104,8 @@ table[data-width="extra"]{min-width:2550px}table[data-width="extra"] col.id{widt
   .table-wrap .group-row .group-summary{margin-left:17px}
   .table-wrap .group-row .group-metric{box-shadow:0 1px 2px #1e293b0a}
   .table-wrap .project-row:nth-of-type(even) td:not(.row-index):not(.id-cell):not(.project-cell){background:#fcfdff!important}
+  .table-wrap .data-row td:nth-child(5){color:#526071;font-variant-numeric:tabular-nums}
+  .table-wrap .data-row td:nth-child(9){color:#334155;font-weight:700}
+  .table-wrap thead .rownum{font-size:11px;color:#8490a1}
+  .table-wrap thead th{font-weight:650}
 }
