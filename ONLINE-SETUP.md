@@ -1,9 +1,26 @@
-# 在线部署准备
+# MySQL 5.7.43 上线步骤
 
-1. 创建 Supabase 项目。
-2. 在 SQL Editor 执行 `supabase-schema.sql`。
-3. 在 Authentication 中创建登录账号。
-4. 复制 `cloud-config.example.js` 为 `cloud-config.js`，填写 Project URL 与 Publishable Key。
-5. 将项目上传至 GitHub，并在 Vercel 中导入该仓库。
+## 服务器要求
 
-安全要求：不要把 Supabase `service_role` key 写入任何前端文件。
+- MySQL 5.7.43
+- PHP 7.4 或更高版本
+- PHP 扩展：PDO、pdo_mysql、session、json
+- Nginx 或 Apache
+- HTTPS 证书
+
+## 快速部署
+
+1. 在服务器面板创建 MySQL 数据库，字符集选择 `utf8mb4`。
+2. 选中数据库并执行 `mysql-schema-5.7.sql`。
+3. 复制 `api/config.example.php` 为 `api/config.php`。
+4. 在 `api/config.php` 中填写 MySQL 地址、端口、数据库名、账号和密码。
+5. 复制 `cloud-config.example.js` 为 `cloud-config.js`。
+6. 将整个项目目录上传到网站根目录。
+7. 访问 `/api/index.php?action=health`，确认返回 MySQL 版本。
+8. 打开网页，使用“首次使用，创建账号”建立第一个账号。
+9. 第一个账号创建后，系统会自动关闭继续注册。
+10. 从旧系统导出 JSON 完整备份，再在新系统中导入。
+
+数据库密码只能保存在服务器的 `api/config.php`，绝对不能写入 JavaScript。
+
+GitHub Pages 无法运行 PHP，因此 MySQL 模式必须部署到支持 PHP 的服务器；现有 GitHub Pages 只能继续使用 Supabase 回退配置。
