@@ -1,0 +1,7 @@
+# Server-only database credentials
+api/config.php
+
+# Local environment and generated packages
+.env
+*.zip
+*.log
