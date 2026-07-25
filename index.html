@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TK-EDC每日项目记录</title>
   <link rel="stylesheet" href="styles.css?v=20260723" />
-  <link rel="stylesheet" href="enhancements.css?v=20260728" />
+  <link rel="stylesheet" href="enhancements.css?v=20260729" />
   <style>#customerWrap .customer-edit{display:none!important}</style>
 </head>
 <body>
@@ -22,7 +22,7 @@
       </nav>
     </aside>
     <main class="workspace">
-      <div class="page-title"><span class="title-mark">TK</span><div><h1>TK-EDC每日项目记录</h1><p>项目进度、财务与交付状态管理</p></div><div class="cloud-account"><span id="cloudStatus">连接云端中…</span><button id="syncNowBtn" type="button">立即同步</button><button id="signOutBtn" type="button">退出登录</button></div></div>
+      <div class="page-title"><span class="title-mark">TK</span><div><h1>TK-EDC每日项目记录</h1><p>项目进度、财务与交付状态管理</p></div><div class="cloud-account"><button class="show reminder-btn" id="reminderBtn" type="button" title="查看未完成项目">◷ 未完成 <b id="reminderCount">0</b></button><span id="cloudStatus">连接云端中…</span><button id="syncNowBtn" type="button">立即同步</button><button id="signOutBtn" type="button">退出登录</button></div></div>
       <section class="view-heading"><div><h2 id="viewTitle">项目进度表</h2><p id="viewDescription">集中管理每日项目、客户和阶段状态</p></div><span class="today-label" id="todayLabel"></span></section>
 
       <section class="toolbar">
@@ -113,10 +113,17 @@
       <small id="authMessage"></small>
     </form>
   </div>
+  <div class="modal reminder-modal" id="reminderModal" role="dialog" aria-modal="true" aria-labelledby="reminderTitle" aria-hidden="true">
+    <div class="modal-card reminder-card">
+      <div class="modal-head"><div><h2 id="reminderTitle">未完成项目提醒</h2><p>按开始时间排列，点击项目可直接进入记录处理</p></div><button type="button" id="closeReminder" aria-label="关闭未完成项目提醒">×</button></div>
+      <div class="reminder-overview" id="reminderOverview"></div>
+      <div class="reminder-list" id="reminderList"></div>
+    </div>
+  </div>
   <div class="toast" id="toast" role="status" aria-live="polite">已保存</div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="cloud-config.js"></script>
   <script src="app.js?v=20260728"></script>
-  <script src="enhancements.js?v=20260728"></script>
+  <script src="enhancements.js?v=20260729"></script>
 </body>
 </html>
