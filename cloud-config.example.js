@@ -1,7 +1,6 @@
-// 复制为 cloud-config.js 后填写 Supabase Dashboard → Project Settings → API 中的信息。
-// Publishable Key 可以用于浏览器；绝对不要把 service_role key 放进网页。
+// MySQL 5.7.43 模式：复制为 cloud-config.js。
+// 数据库账号和密码只填写在服务器 api/config.php，不能写在这里。
 window.CLOUD_CONFIG = {
-  supabaseUrl: 'https://YOUR_PROJECT.supabase.co',
-  supabasePublishableKey: 'YOUR_PUBLISHABLE_KEY'
+  provider: 'mysql',
+  apiBaseUrl: './api/index.php'
 };
-
