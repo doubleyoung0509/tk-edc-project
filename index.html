@@ -108,7 +108,7 @@
     <form class="modal-card auth-card" id="authForm">
       <div class="auth-logo">TK</div><h2 id="authTitle">登录项目工作台</h2><p>登录后可在手机和其他电脑同步访问同一份项目数据</p>
       <label>邮箱<input type="email" name="email" required placeholder="name@example.com"></label>
-      <label>密码<input type="password" name="password" required minlength="6" placeholder="至少 6 位密码"></label>
+      <label>密码<input type="password" name="password" required minlength="8" placeholder="至少 8 位密码"></label>
       <button class="save auth-submit" type="submit">登录</button><button class="auth-register" id="registerBtn" type="button">首次使用，创建账号</button>
       <small id="authMessage"></small>
     </form>
@@ -122,8 +122,9 @@
   </div>
   <div class="toast" id="toast" role="status" aria-live="polite">已保存</div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="cloud-config.js"></script>
-  <script src="app.js?v=20260728"></script>
+  <script src="cloud-config.js?v=20260732"></script>
+  <script src="mysql-client.js?v=20260732"></script>
+  <script src="app.js?v=20260732"></script>
   <script src="enhancements.js?v=20260731"></script>
 </body>
 </html>
